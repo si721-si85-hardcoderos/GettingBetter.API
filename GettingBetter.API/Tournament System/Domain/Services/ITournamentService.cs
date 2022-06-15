@@ -1,8 +1,7 @@
-﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
-using GettingBetter.API.Tournaments_System.Domain.Models;
-using GettingBetter.API.Tournaments_System.Domain.Services.Communication;
+﻿using GettingBetter.API.Tournament_System.Domain.Models;
+using GettingBetter.API.Tournament_System.Domain.Services.Communication;
 
-namespace GettingBetter.API.Tournaments_System.Domain.Services;
+namespace GettingBetter.API.Tournament_System.Domain.Services;
 
 public interface ITournamentService
 {

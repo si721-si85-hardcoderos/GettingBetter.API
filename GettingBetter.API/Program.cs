@@ -6,10 +6,10 @@ using GettingBetter.API.Shared.Domain.Repositories;
 using GettingBetter.API.Shared.Mapping;
 using GettingBetter.API.Shared.Persistence.Contexts;
 using GettingBetter.API.Shared.Persistence.Repositories;
-using GettingBetter.API.Tournaments_System.Domain.Repositories;
-using GettingBetter.API.Tournaments_System.Domain.Services;
-using GettingBetter.API.Tournaments_System.Persistence.Repositories;
-using GettingBetter.API.Tournaments_System.Services;
+using GettingBetter.API.Tournament_System.Domain.Repositories;
+using GettingBetter.API.Tournament_System.Domain.Services;
+using GettingBetter.API.Tournament_System.Persistence.Repositories;
+using GettingBetter.API.Tournament_System.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 

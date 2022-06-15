@@ -1,7 +1,7 @@
 ﻿using GettingBetter.API.Shared.Domain.Services.Communication;
-using GettingBetter.API.Tournaments_System.Domain.Models;
+using GettingBetter.API.Tournament_System.Domain.Models;
 
-namespace GettingBetter.API.Tournaments_System.Domain.Services.Communication;
+namespace GettingBetter.API.Tournament_System.Domain.Services.Communication;
 
 public class TournamentResponse : BaseResponse<Tournament>
 {

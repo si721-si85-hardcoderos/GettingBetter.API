@@ -1,6 +1,6 @@
 ﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
 using GettingBetter.API.Shared.Extensions;
-using GettingBetter.API.Tournaments_System.Domain.Models;
+using GettingBetter.API.Tournament_System.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace GettingBetter.API.Shared.Persistence.Contexts

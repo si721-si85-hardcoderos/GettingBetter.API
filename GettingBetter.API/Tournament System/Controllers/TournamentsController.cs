@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using GettingBetter.API.Shared.Extensions;
-using GettingBetter.API.Tournaments_System.Domain.Models;
-using GettingBetter.API.Tournaments_System.Domain.Services;
-using GettingBetter.API.Tournaments_System.Resources;
+using GettingBetter.API.Tournament_System.Domain.Models;
+using GettingBetter.API.Tournament_System.Domain.Services;
+using GettingBetter.API.Tournament_System.Resources;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GettingBetter.API.Tournaments_System.Controllers;
+namespace GettingBetter.API.Tournament_System.Controllers;
 
 [ApiController]
 [Route("/api/v1/[controller]")]

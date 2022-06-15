@@ -1,7 +1,6 @@
-﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
-using GettingBetter.API.GettingBetter_System.Resources;
+﻿using GettingBetter.API.GettingBetter_System.Resources;
 
-namespace GettingBetter.API.Tournaments_System.Resources;
+namespace GettingBetter.API.Tournament_System.Resources;
 
 public class TournamentResource
 {

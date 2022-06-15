@@ -1,10 +1,10 @@
 ﻿using GettingBetter.API.Shared.Persistence.Contexts;
 using GettingBetter.API.Shared.Persistence.Repositories;
-using GettingBetter.API.Tournaments_System.Domain.Models;
-using GettingBetter.API.Tournaments_System.Domain.Repositories;
+using GettingBetter.API.Tournament_System.Domain.Models;
+using GettingBetter.API.Tournament_System.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 
-namespace GettingBetter.API.Tournaments_System.Persistence.Repositories;
+namespace GettingBetter.API.Tournament_System.Persistence.Repositories;
 
 public class TournamentRepository : BaseRepository, ITournamentRepository
 {

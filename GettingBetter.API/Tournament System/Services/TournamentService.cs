@@ -1,12 +1,11 @@
-﻿
-using GettingBetter.API.GettingBetter_System.Domain.Repositories;
+﻿using GettingBetter.API.GettingBetter_System.Domain.Repositories;
 using GettingBetter.API.Shared.Domain.Repositories;
-using GettingBetter.API.Tournaments_System.Domain.Models;
-using GettingBetter.API.Tournaments_System.Domain.Repositories;
-using GettingBetter.API.Tournaments_System.Domain.Services;
-using GettingBetter.API.Tournaments_System.Domain.Services.Communication;
+using GettingBetter.API.Tournament_System.Domain.Models;
+using GettingBetter.API.Tournament_System.Domain.Repositories;
+using GettingBetter.API.Tournament_System.Domain.Services;
+using GettingBetter.API.Tournament_System.Domain.Services.Communication;
 
-namespace GettingBetter.API.Tournaments_System.Services;
+namespace GettingBetter.API.Tournament_System.Services;
 
 public class TournamentService : ITournamentService
 { 

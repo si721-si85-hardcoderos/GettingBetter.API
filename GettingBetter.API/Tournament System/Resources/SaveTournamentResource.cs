@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace GettingBetter.API.Tournaments_System.Resources;
+namespace GettingBetter.API.Tournament_System.Resources;
 
 public class SaveTournamentResource
 {

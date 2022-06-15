@@ -1,7 +1,6 @@
-﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
-using GettingBetter.API.Tournaments_System.Domain.Models;
+﻿using GettingBetter.API.Tournament_System.Domain.Models;
 
-namespace GettingBetter.API.Tournaments_System.Domain.Repositories;
+namespace GettingBetter.API.Tournament_System.Domain.Repositories;
 
 public interface ITournamentRepository
 {

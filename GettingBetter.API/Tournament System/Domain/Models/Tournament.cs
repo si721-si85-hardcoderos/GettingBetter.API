@@ -1,6 +1,6 @@
 ﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
 
-namespace GettingBetter.API.Tournaments_System.Domain.Models;
+namespace GettingBetter.API.Tournament_System.Domain.Models;
 
 public class Tournament
 {
