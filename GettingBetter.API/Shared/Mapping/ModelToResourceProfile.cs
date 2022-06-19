@@ -14,5 +14,6 @@ public class ModelToResourceProfile : Profile
         CreateMap<Student, StudentResource>();
         CreateMap<Cyber, CyberResource>();
         CreateMap<Tournament, TournamentResource>();
+        CreateMap<RegisterTournament, RegisterTournamentResource>();
     } 
 }

@@ -15,6 +15,8 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
 
         public DbSet<Tournament> Tournaments { get; set; }
         // public DbSet<Advisory> Advisories { get; set; }
+        
+        public DbSet<RegisterTournament> RegisterTournaments { get; set; } 
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -63,16 +65,29 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                 .WithOne(p => p.Cyber)
                 .HasForeignKey(p => p.CyberId);
 
-            builder.Entity<Tournament>().ToTable("Tournaments");
+             builder.Entity<Tournament>().ToTable("Tournaments");
              builder.Entity<Tournament>().HasKey(p => p.Id);
              builder.Entity<Tournament>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
              builder.Entity<Tournament>().Property(p => p.Title).IsRequired().HasMaxLength(30);
              builder.Entity<Tournament>().Property(p => p.Description).IsRequired().HasMaxLength(30);
-             builder.Entity<Tournament>().Property(p => p.StudentId).IsRequired(); 
              builder.Entity<Tournament>().Property(p => p.CyberId).IsRequired();
              builder.Entity<Tournament>().Property(p => p.Date).IsRequired().HasMaxLength(30); 
             
-            
+             builder.Entity<RegisterTournament>().ToTable("Register_Tournaments");
+             builder.Entity<RegisterTournament>().HasKey(p => p.Id);
+             builder.Entity<RegisterTournament>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+             builder.Entity<RegisterTournament>().Property(p => p.StudentId).IsRequired();
+             builder.Entity<RegisterTournament>().Property(p => p.TournamentId).IsRequired();
+             
+             builder.Entity<Tournament>()
+                 .HasMany(p => p.RegisterTournaments)
+                 .WithOne(p => p.Tournament)
+                 .HasForeignKey(p => p.TournamentId);
+             
+             builder.Entity<Student>()
+                 .HasMany(p =>p.RegisterTournaments)
+                 .WithOne(p => p.Student)
+                 .HasForeignKey(p => p.StudentId);
              /*
              builder.Entity<Advisory>().ToTable("Tournaments");
              builder.Entity<Advisory>().HasKey(p => p.Id);
@@ -82,7 +97,7 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
              builder.Entity<Advisory>().Property(p => p.Date).IsRequired(); 
              
              */
-            // Apply Snake Case Naming Convention
+            // Apply Snake Case Naming 00000
 
             builder.UseSnakeCaseNamingConvention();
         }

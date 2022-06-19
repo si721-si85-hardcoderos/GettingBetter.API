@@ -10,9 +10,9 @@ public class Tournament
     public string Date { get; set; }
     public string Addres { get; set; }
     // Relationships
-    public int StudentId { get; set; }
-    //public Student Student { get; set; }
     
     public int CyberId { get; set; }
-    public Cyber Cyber { get; set; } 
+    public Cyber Cyber { get; set; }
+    
+    public IList<RegisterTournament> RegisterTournaments { get; set; } = new List<RegisterTournament>();
 }

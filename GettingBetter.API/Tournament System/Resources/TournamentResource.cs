@@ -14,9 +14,6 @@ public class TournamentResource
     
     public string Addres { get; set; }
     // Relationships
-   
-    public int StudentId { get; set; }
-    //public Student Student { get; set; }
     
     public CyberResource Cyber { get; set; } 
 }

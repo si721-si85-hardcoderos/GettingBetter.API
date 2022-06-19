@@ -20,9 +20,7 @@ public class SaveTournamentResource
     [MaxLength(30)]
     public string Addres { get; set; }
     // Relationships
-    [Required]
-    public int StudentId { get; set; }
-    //public Student Student { get; set; }
+  
     [Required]
     public int CyberId { get; set; }
    

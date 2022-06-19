@@ -73,6 +73,8 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //builder.Services.AddScoped<IAdvisoryService, AdvisoryService>();
 builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
 builder.Services.AddScoped<ITournamentService, TournamentService>();
+builder.Services.AddScoped<IRegisterTournamentRepository, RegisterTournamentRepository>();
+builder.Services.AddScoped<IRegisterTournamentService, RegisterTournamentService>();
 // AutoMapper Configuration
 
 builder.Services.AddAutoMapper(
