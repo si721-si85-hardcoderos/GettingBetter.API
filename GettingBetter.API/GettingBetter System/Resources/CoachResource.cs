@@ -17,5 +17,9 @@ public class CoachResource
     [SwaggerSchema("Coach Email")]
     public string Email { get; set; }
     [SwaggerSchema("Coach Password")]
-    public string Password { get; set; } 
+    public string Password { get; set; }
+    [SwaggerSchema("Coach UserImage")]
+    public string UserImage { get; set; }
+    [SwaggerSchema("Coach Bibliography")] 
+    public string Bibliography { get; set; }
 }

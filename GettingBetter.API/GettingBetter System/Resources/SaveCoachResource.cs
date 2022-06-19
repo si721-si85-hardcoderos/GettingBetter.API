@@ -30,4 +30,8 @@ public class SaveCoachResource
     [SwaggerSchema("Coach Password")]
     [Required]
     public string Password { get; set; }
+    [SwaggerSchema("Coach UserImage")]
+    public string UserImage { get; set; }
+    [SwaggerSchema("Coach Bibliography")] 
+    public string Bibliography { get; set; }
 }

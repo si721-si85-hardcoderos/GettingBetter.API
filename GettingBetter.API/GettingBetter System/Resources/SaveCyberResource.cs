@@ -33,5 +33,7 @@ public class SaveCyberResource
 
         [Required] 
         [MaxLength(30)] 
-        public string Password { get; set; } 
+        public string Password { get; set; }
+        
+        public string CyberImage { get; set; } 
 }

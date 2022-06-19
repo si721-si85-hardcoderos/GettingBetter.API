@@ -45,6 +45,12 @@ public class CoachService : ICoachService
             return new CoachResponse("Coach not found.");
 
         existingCoach.FirstName = coach.FirstName;
+        existingCoach.LastName = coach.LastName;
+        existingCoach.Password = coach.Password;
+        existingCoach.NickName = coach.NickName;
+        existingCoach.SelectedGame = coach.SelectedGame;
+        existingCoach.Bibliography = coach.Bibliography;
+        existingCoach.UserImage = existingCoach.UserImage;
 
         try
         {

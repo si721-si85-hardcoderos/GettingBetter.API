@@ -45,7 +45,16 @@ namespace GettingBetter.API.GettingBetter_System.Services;
             if (existingCyber == null)
                 return new CyberResponse("Cyber not found.");
 
-           // existingCyber.FirstName = cyber.FirstName;
+          
+           existingCyber.FirstName = cyber.FirstName;
+           existingCyber.LastName = cyber.LastName;
+           existingCyber.Password = cyber.Password;
+           existingCyber.CyberName = cyber.CyberName;
+           existingCyber.CyberImage = cyber.CyberImage;
+           existingCyber.Bibliography = cyber.Bibliography;
+           existingCyber.Email = cyber.Email;
+           existingCyber.Password = cyber.Password;
+
 
             try
             {

@@ -9,6 +9,10 @@ public class Coach
     public string NickName { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
+    public string UserImage { get; set; }
+    public string Bibliography { get; set; }
+    
+    
     // Relationships
 
     public IList<Student> Students { get; set; } = new List<Student>(); 

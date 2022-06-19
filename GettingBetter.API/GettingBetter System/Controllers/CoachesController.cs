@@ -12,7 +12,7 @@ namespace GettingBetter.API.GettingBetter_System.Controllers;
 [ApiController]
 [Route("/api/v1/[controller]")]
 [Produces(MediaTypeNames.Application.Json)]
-[SwaggerTag("Create, read, update and delete Categories")]
+[SwaggerTag("Create, read, update and delete Coaches")]
 public class CoachesController : ControllerBase
 {
     private readonly ICoachService _coachService;

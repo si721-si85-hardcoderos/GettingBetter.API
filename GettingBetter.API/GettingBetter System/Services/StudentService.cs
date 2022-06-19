@@ -66,7 +66,13 @@ public class StudentService : IStudentService
     public async Task<StudentResponse> UpdateAsync(int studentId, Student student)
     {
         var existingStudent = await _studentRepository.FindByIdAsync(studentId);
-        
+        existingStudent.FirstName = student.FirstName;
+        existingStudent.LastName = student.LastName;
+        existingStudent.Password = student.Password;
+        existingStudent.NickName = student.NickName;
+        existingStudent.UserImage = student.UserImage;
+        existingStudent.NickName = student.NickName;
+        existingStudent.Email = student.Email;
         // Validate Student
 
         if (existingStudent == null)

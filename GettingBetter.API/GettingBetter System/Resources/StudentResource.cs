@@ -7,6 +7,7 @@ public class StudentResource
     public string LastName { get; set; }
     public string NickName { get; set; }
     public string Email { get; set; }
-    public string Password { get; set; } 
+    public string Password { get; set; }
+    public string UserImage { get; set; }
    // public CoachResource Coach { get; set; }
 }
