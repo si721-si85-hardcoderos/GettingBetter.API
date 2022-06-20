@@ -13,6 +13,7 @@ public class Coach
     public string Bibliography { get; set; }
     
     
+    
     // Relationships
 
     public IList<Student> Students { get; set; } = new List<Student>(); 

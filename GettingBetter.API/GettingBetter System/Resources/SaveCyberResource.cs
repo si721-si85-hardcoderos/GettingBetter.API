@@ -19,12 +19,11 @@ public class SaveCyberResource
         [MaxLength(30)] 
         public string CyberName { get; set; }
         
-        [Required] 
-        [MaxLength(30)] 
+        
+        
         public string Bibliography { get; set; }
         
-        [Required] 
-        [MaxLength(30)] 
+        [Required]
         public string Address { get; set; }
         
         [Required] 

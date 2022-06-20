@@ -28,17 +28,7 @@ public class CyberRepository : BaseRepository, ICyberRepository
         return await _context.Cybers.FindAsync( cyberId);
 
     }
-
-  
-
-    /*   public async Task<IEnumerable<Student>> FindByCoachIdAsync(int coachId)
-       {
-           return await _context.Students
-               .Where(p => p.CoachId == coachId)
-               .Include(p => p.Coach)
-               .ToListAsync();
-       }
-   */
+    
     public void Update(Cyber cyber)
     {
         _context.Cybers.Update(cyber);

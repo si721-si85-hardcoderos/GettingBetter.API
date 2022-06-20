@@ -33,5 +33,5 @@ public class SaveCoachResource
     [SwaggerSchema("Coach UserImage")]
     public string UserImage { get; set; }
     [SwaggerSchema("Coach Bibliography")] 
-    public string Bibliography { get; set; }
+     public string Bibliography { get; set; }
 }
