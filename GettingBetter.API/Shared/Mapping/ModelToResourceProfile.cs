@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using GettingBetter.API.Advisory_System.Domain.Models;
+using GettingBetter.API.Advisory_System.Resources;
 using GettingBetter.API.GettingBetter_System.Domain.Models;
 using GettingBetter.API.GettingBetter_System.Resources;
 using GettingBetter.API.Tournament_System.Domain.Models;
@@ -14,6 +16,7 @@ public class ModelToResourceProfile : Profile
         CreateMap<Student, StudentResource>();
         CreateMap<Cyber, CyberResource>();
         CreateMap<Tournament, TournamentResource>();
+        CreateMap<Advisory, AdvisoryResource>();
         CreateMap<RegisterTournament, RegisterTournamentResource>();
     } 
 }

@@ -1,4 +1,5 @@
-﻿using GettingBetter.API.Tournament_System.Domain.Models;
+﻿using GettingBetter.API.Advisory_System.Domain.Models;
+using GettingBetter.API.Tournament_System.Domain.Models;
 
 namespace GettingBetter.API.GettingBetter_System.Domain.Models;
 
@@ -12,6 +13,6 @@ public class Student
     public string Password { get; set; }
     public string UserImage { get; set; }
     public IList<RegisterTournament> RegisterTournaments { get; set; } = new List<RegisterTournament>();
-
+    public IList<Advisory> Advisories { get; set; } = new List<Advisory>();
 
 }

@@ -1,3 +1,7 @@
+using GettingBetter.API.Advisory_System.Domain.Repositories;
+using GettingBetter.API.Advisory_System.Domain.Services;
+using GettingBetter.API.Advisory_System.Persistence.Repositories;
+using GettingBetter.API.Advisory_System.Services;
 using GettingBetter.API.GettingBetter_System.Domain.Repositories;
 using GettingBetter.API.GettingBetter_System.Domain.Services;
 using GettingBetter.API.GettingBetter_System.Persistence.Repositories;
@@ -69,8 +73,8 @@ builder.Services.AddScoped<ICyberRepository, CyberRepository>();
 builder.Services.AddScoped<ICyberService, CyberService>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-//builder.Services.AddScoped<IAdvisoryRepository, AdvisoryRepository>();
-//builder.Services.AddScoped<IAdvisoryService, AdvisoryService>();
+builder.Services.AddScoped<IAdvisoryRepository, AdvisoryRepository>();
+builder.Services.AddScoped<IAdvisoryService, AdvisoryService>();
 builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
 builder.Services.AddScoped<ITournamentService, TournamentService>();
 builder.Services.AddScoped<IRegisterTournamentRepository, RegisterTournamentRepository>();

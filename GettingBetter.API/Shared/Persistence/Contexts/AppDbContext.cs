@@ -1,4 +1,5 @@
-﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
+﻿using GettingBetter.API.Advisory_System.Domain.Models;
+using GettingBetter.API.GettingBetter_System.Domain.Models;
 using GettingBetter.API.Shared.Extensions;
 using GettingBetter.API.Tournament_System.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +15,7 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
         public DbSet<Cyber> Cybers { get; set; }
 
         public DbSet<Tournament> Tournaments { get; set; }
+        public DbSet<Advisory> Advisories { get; set; }
         
         
         public DbSet<RegisterTournament> RegisterTournaments { get; set; } 
@@ -214,6 +216,63 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                  .WithOne(p => p.Student)
                  .HasForeignKey(p => p.StudentId);
              builder.UseSnakeCaseNamingConvention();
+             
+             
+             builder.Entity<Advisory>().ToTable("Advisories");
+             builder.Entity<Advisory>().HasKey(p => p.Id);
+             builder.Entity<Advisory>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+             builder.Entity<Advisory>().Property(p => p.AdvisoryImage).IsRequired().HasMaxLength(200);
+             builder.Entity<Advisory>().Property(p => p.DiscorServer).IsRequired().HasMaxLength(150);
+             builder.Entity<Advisory>().Property(p => p.Title).IsRequired().HasMaxLength(100);
+             builder.Entity<Advisory>().Property(p => p.Description).IsRequired().HasMaxLength(300); 
+             builder.Entity<Advisory>().Property(p => p.Hour).IsRequired().HasMaxLength(10);  
+             builder.Entity<Advisory>().Property(p => p.Date).IsRequired().HasMaxLength(10);
+             builder.Entity<Advisory>().Property(p => p.StudentId).IsRequired();
+             builder.Entity<Advisory>().Property(p => p.CoachId).IsRequired();
+             builder.Entity<Advisory>().HasData(
+                 new Advisory
+                 {
+                    Id = 1,
+                    AdvisoryImage = "https://staticg.sportskeeda.com/editor/2021/04/45716-16195438439457-800.jpg",
+                    DiscorServer = "Quasimodo",
+                    Title = "(DOTA 2) Learn from the pros",
+                    Description = "Meet a pro-gamer to improve your skills",
+                    Hour = "9:30pm",
+                    Date = "21-07-2022",
+                    StudentId = 2,
+                    CoachId = 1
+                 }
+             );
+             
+             builder.Entity<Advisory>().HasData(
+                 new Advisory
+                 {
+                     Id = 2,
+                     AdvisoryImage = "https://dota2freaks.com/wp-content/uploads/sites/10/2020/02/dota-2-recommended-items.jpg",
+                     DiscorServer = "AS - WILD",
+                     Title = "(DOTA 2) Support Itemization",
+                     Description = "How to build to help your team",
+                     Hour = "10:30pm",
+                     Date = "29-08-2022",
+                     StudentId = 1,
+                     CoachId = 2
+                 }
+             );
+
+             builder.Entity<Student>()
+                 .HasMany(p => p.Advisories)
+                 .WithOne(p => p.Student)
+                 .HasForeignKey(p => p.StudentId);
+
+             builder.Entity<Coach>()
+                 .HasMany(p =>p.Advisories)
+                 .WithOne(p => p.Coach)
+                 .HasForeignKey(p => p.CoachId);
+             builder.UseSnakeCaseNamingConvention();
+
+
+
+
         }
     }
 }
