@@ -1,4 +1,5 @@
 ﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
+using GettingBetter.API.Learning_System.Domain.Models;
 using GettingBetter.API.Shared.Extensions;
 using GettingBetter.API.Tournament_System.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,8 +16,10 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
 
         public DbSet<Tournament> Tournaments { get; set; }
         
-        
         public DbSet<RegisterTournament> RegisterTournaments { get; set; } 
+        
+        public DbSet<Learning> Learnings { get; set; } 
+
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }

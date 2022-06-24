@@ -1,6 +1,6 @@
 ﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
 
-namespace GettingBetter.API.Learning_System.Domain;
+namespace GettingBetter.API.Learning_System.Domain.Models;
 
 public class Learning
 {
