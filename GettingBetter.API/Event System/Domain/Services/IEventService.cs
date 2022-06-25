@@ -9,5 +9,5 @@ public interface IEventService
     Task<IEnumerable<Event>> ListByCyberIdAsync(int cyberId);
     Task<EventResponse> SaveAsync(Event event);
     Task<EventResponse> UpdateAsync(int eventId, Event event);
-    Task<EventResponse> DeleteAsync(int eventId);  
+    Task<EventResponse> DeleteAsync(int eventId);
 }

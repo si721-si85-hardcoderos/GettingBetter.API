@@ -3,6 +3,8 @@ using GettingBetter.API.GettingBetter_System.Domain.Models;
 using GettingBetter.API.GettingBetter_System.Resources;
 using GettingBetter.API.Tournament_System.Domain.Models;
 using GettingBetter.API.Tournament_System.Resources;
+using GettingBetter.API.Event_System.Domain.Models;
+using GettingBetter.API.Event_System.Resources;
 
 namespace GettingBetter.API.Shared.Mapping;
 
@@ -15,5 +17,7 @@ public class ModelToResourceProfile : Profile
         CreateMap<Cyber, CyberResource>();
         CreateMap<Tournament, TournamentResource>();
         CreateMap<RegisterTournament, RegisterTournamentResource>();
+        /*Add event- by OMAR*/
+        CreateMap<Event, EventResource>(); 
     } 
 }
