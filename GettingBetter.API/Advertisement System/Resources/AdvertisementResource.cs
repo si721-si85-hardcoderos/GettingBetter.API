@@ -10,7 +10,7 @@ public class AdvertisementResource
     
     public string Description { get; set; }
     
-    public string ImageEvent { get; set; }
+    public string ImageAdvertisement { get; set; }
     
     public string UrlPublication { get; set; }
 }

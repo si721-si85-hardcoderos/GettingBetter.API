@@ -14,7 +14,7 @@ public class SaveAdvertisementResource
     
     [Required]
     [MaxLength(50)]
-    public string ImageEvent { get; set; }
+    public string ImageAdvertisement { get; set; }
     
     [Required]
     [MaxLength(50)]

@@ -14,7 +14,7 @@ public class AdvertisementService : IAdvertisementService
 
     public AdvertisementService(IAdvertisementRepository advertisementRepository, IUnitOfWork unitOfWork)
     {
-        _tournamentRepository = tournamentRepository;
+        _advertisementRepository = advertisementRepository;
         _unitOfWork = unitOfWork;
     }
 

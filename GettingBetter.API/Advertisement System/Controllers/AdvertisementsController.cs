@@ -21,7 +21,7 @@ public class AdvertisementsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IEnumerable<TournamentResource>> GetAllAsync()
+    public async Task<IEnumerable<AdvertisementResource>> GetAllAsync()
     {
         var advertisement = await _advertisementService.ListAsync();
         var resources = _mapper.Map<IEnumerable<Advertisement>, IEnumerable<AdvertisementResource>>(advertisements);
