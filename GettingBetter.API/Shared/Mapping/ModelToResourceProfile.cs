@@ -17,7 +17,6 @@ public class ModelToResourceProfile : Profile
         CreateMap<Cyber, CyberResource>();
         CreateMap<Tournament, TournamentResource>();
         CreateMap<RegisterTournament, RegisterTournamentResource>();
-        /*Add event- by OMAR*/
         CreateMap<Event, EventResource>(); 
     } 
 }
