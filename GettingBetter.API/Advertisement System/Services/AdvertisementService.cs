@@ -70,7 +70,7 @@ public class AdvertisementService : IAdvertisementService
             var existingAdvertisement = await _advertisementRepository.FindByIdAsync(advertisementId);
 
             if (existingAdvertisement == null)
-                return new AdvertisementResponse("Cyber not found.");
+                return new AdvertisementResponse("Advertisement not found.");
 
             try
             {
@@ -82,7 +82,7 @@ public class AdvertisementService : IAdvertisementService
             catch (Exception e)
             {
                 // Do some logging stuff
-                return new AdvertisementResponse($"An error occurred while deleting the cyber: {e.Message}");
+                return new AdvertisementResponse($"An error occurred while deleting the advertisement: {e.Message}");
             }
         }
     

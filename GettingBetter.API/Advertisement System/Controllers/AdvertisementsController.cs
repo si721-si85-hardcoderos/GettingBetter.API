@@ -1,14 +1,19 @@
+using System.Net.Mime;
 using AutoMapper;
 using GettingBetter.API.Shared.Extensions;
 using GettingBetter.API.Advertisement_System.Domain.Models;
 using GettingBetter.API.Advertisement_System.Domain.Services;
 using GettingBetter.API.Advertisement_System.Resources;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace GettingBetter.API.Advertisement_System.Controllers;
 
 [ApiController]
 [Route("/api/v1/[controller]")]
+[Produces(MediaTypeNames.Application.Json)]
+[SwaggerTag("Create, read, update and delete Advertisements")]
+
 public class AdvertisementsController : ControllerBase
 {
     private readonly IAdvertisementService _advertisementService;
@@ -61,9 +66,9 @@ public class AdvertisementsController : ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var cyberResource = _mapper.Map<Advertisement, AdvertisementResource>(result.Resource);
+        var advertisementResource = _mapper.Map<Advertisement, AdvertisementResource>(result.Resource);
 
-        return Ok(cyberResource);
+        return Ok(advertisementResource);
     }
 
     [HttpDelete("{id}")]
@@ -74,9 +79,9 @@ public class AdvertisementsController : ControllerBase
         if (!result.Success)
             return BadRequest(result.Message);
 
-        var cyberResource = _mapper.Map<Advertisement, AdvertisementResource>(result.Resource);
+        var advertisementResource = _mapper.Map<Advertisement, AdvertisementResource>(result.Resource);
 
-        return Ok(cyberResource);
+        return Ok(advertisementResource);
     }
     
 }

@@ -217,17 +217,17 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                  .HasMany(p =>p.RegisterTournaments)
                  .WithOne(p => p.Student)
                  .HasForeignKey(p => p.StudentId);
-             builder.UseSnakeCaseNamingConvention();
+             
 
 
              builder.Entity<Advertisement>().ToTable("Advertisements");
              builder.Entity<Advertisement>().HasKey(p => p.Id);
              builder.Entity<Advertisement>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-             builder.Entity<Advertisement>().Property(p => p.Title).IsRequired().HasMaxLength(30);
+             builder.Entity<Advertisement>().Property(p => p.Title).IsRequired().HasMaxLength(50);
              builder.Entity<Advertisement>().Property(p => p.Description).IsRequired().HasMaxLength(900);
-             builder.Entity<Advertisement>().Property(p => p.ImageAdvertisement).IsRequired().HasMaxLength(30); 
+             builder.Entity<Advertisement>().Property(p => p.ImageAdvertisement).IsRequired().HasMaxLength(120); 
              builder.Entity<Advertisement>().Property(p => p.UrlPublication).IsRequired().HasMaxLength(120);  
-             builder.Entity<Advertisement>().HasData(
+             /*builder.Entity<Advertisement>().HasData(
                  new Advertisement { 
                      Id = 1,
                      Title = "Conoce todos los detalles acerca de este proyecto de ley y cómo podría afectar al mercado de apuestas online en el país.",
@@ -256,8 +256,9 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                      UrlPublication = "https://larepublica.pe/videojuegos/esports/2022/06/17/esports-cuanto-puede-ganar-un-gamer-profesional-en-peru-gaming-gamer-jugador-profesiona/"
                  } 
              );
+             */
 
-
+             builder.UseSnakeCaseNamingConvention();
         }
     }
 }

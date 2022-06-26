@@ -34,6 +34,7 @@ public class CybersController : ControllerBase
 
     }
 
+    
     [HttpPost]
     public async Task<IActionResult> PostAsync([FromBody] SaveCyberResource resource)
     {
@@ -70,6 +71,7 @@ public class CybersController : ControllerBase
         return Ok(cyberResource);
     }
 
+    
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteAsync(int id)
     {
