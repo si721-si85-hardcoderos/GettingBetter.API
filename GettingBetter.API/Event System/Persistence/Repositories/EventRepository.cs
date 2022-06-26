@@ -20,9 +20,9 @@ public class EventRepository : BaseRepository, IEventRepository
             
     }
 
-    public async Task AddAsync(Event event)
+    public async Task AddAsync(Event evento)
     {
-        await _context.Events.AddAsync(event);
+        await _context.Events.AddAsync(evento);
     }
 
     public async Task<Event> FindByIdAsync(int eventId)
@@ -42,13 +42,13 @@ public class EventRepository : BaseRepository, IEventRepository
     }
 
 
-    public void Update(Event event)
+    public void Update(Event evento)
     {
-        _context.Events.Update(event);
+        _context.Events.Update(evento);
     }
 
-    public void Remove(Event event)
+    public void Remove(Event evento)
     {
-        _context.Events.Remove(event);
+        _context.Events.Remove(evento);
     } 
 }

@@ -1,4 +1,5 @@
-﻿using GettingBetter.API.Tournament_System.Domain.Models;
+﻿using GettingBetter.API.Event_System.Domain.Models;
+using GettingBetter.API.Tournament_System.Domain.Models;
 
 namespace GettingBetter.API.GettingBetter_System.Domain.Models;
 
@@ -16,6 +17,7 @@ public class Cyber
        
         public string CyberImage { get; set; } 
         public IList<Tournament> Tournaments { get; set; } = new List<Tournament>();
+        public IList<Event> Events { get; set; } = new List<Event>();
         
         
 }

@@ -1,4 +1,7 @@
-﻿namespace GettingBetter.API.Event_System.Domain;
+﻿
+using GettingBetter.API.GettingBetter_System.Domain.Models;
+
+namespace GettingBetter.API.Event_System.Domain.Models;
 
 public class Event
 {

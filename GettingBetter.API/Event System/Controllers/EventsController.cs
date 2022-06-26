@@ -1,6 +1,6 @@
 using AutoMapper;
-using GettingBetter.API.Shared.Extensions;
 using GettingBetter.API.Event_System.Domain.Models;
+using GettingBetter.API.Shared.Extensions;
 using GettingBetter.API.Event_System.Domain.Services;
 using GettingBetter.API.Event_System.Resources;
 using Microsoft.AspNetCore.Mvc;
@@ -36,9 +36,9 @@ public class EventsController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
 
-        var event = _mapper.Map<SaveEventResource, Event>(resource);
+        var evento = _mapper.Map<SaveEventResource, Event>(resource);
 
-        var result = await _eventService.SaveAsync(event);
+        var result = await _eventService.SaveAsync(evento);
 
         if (!result.Success)
             return BadRequest(result.Message);
@@ -54,9 +54,9 @@ public class EventsController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState.GetErrorMessages());
 
-        var event = _mapper.Map<SaveEventResource, Event>(resource);
+        var evento = _mapper.Map<SaveEventResource, Event>(resource);
 
-        var result = await _eventService.UpdateAsync(id, event);
+        var result = await _eventService.UpdateAsync(id, evento);
 
         if (!result.Success)
             return BadRequest(result.Message);

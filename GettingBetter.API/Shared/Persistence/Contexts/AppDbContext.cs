@@ -1,4 +1,5 @@
-﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
+﻿using GettingBetter.API.Event_System.Domain.Models;
+using GettingBetter.API.GettingBetter_System.Domain.Models;
 using GettingBetter.API.Shared.Extensions;
 using GettingBetter.API.Tournament_System.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -215,9 +216,7 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                 .HasMany(p =>p.RegisterTournaments)
                 .WithOne(p => p.Student)
                 .HasForeignKey(p => p.StudentId);
-            builder.UseSnakeCaseNamingConvention();
-
-
+            
             builder.Entity<Event>().ToTable("Events");
             builder.Entity<Event>().HasKey(p => p.Id);
             builder.Entity<Event>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
@@ -264,6 +263,8 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                 .HasMany(p => p.Events)
                 .WithOne(p => p.Cyber)
                 .HasForeignKey(p => p.CyberId);
+            
+            builder.UseSnakeCaseNamingConvention();
 
         }
     }

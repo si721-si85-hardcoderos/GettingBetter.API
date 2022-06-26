@@ -30,11 +30,11 @@ public class EventService : IEventService
         return await _eventRepository.FindByCyberIdAsync(cyberId);
     }
 
-    public async Task<EventResponse> SaveAsync(Event event)
+    public async Task<EventResponse> SaveAsync(Event evento)
     {
         
 
-        var existingCyber = await _cyberRepository.FindByIdAsync(event.CyberId);
+        var existingCyber = await _cyberRepository.FindByIdAsync(evento.CyberId);
 
         if (existingCyber == null)
             return new EventResponse("Invalid Cyber");
@@ -43,13 +43,13 @@ public class EventService : IEventService
         try
         {
             
-            await _eventRepository.AddAsync(event);
+            await _eventRepository.AddAsync(evento);
             
             
             await _unitOfWork.CompleteAsync();
             
             
-            return new EventResponse(event);
+            return new EventResponse(evento);
 
         }
         catch (Exception e)
@@ -61,7 +61,7 @@ public class EventService : IEventService
         
     }
 
-    public async Task<EventResponse> UpdateAsync(int eventId, Event  event)
+    public async Task<EventResponse> UpdateAsync(int eventId, Event  evento)
     {
         var existingEvent = await _eventRepository.FindByIdAsync(eventId);
         
@@ -72,7 +72,7 @@ public class EventService : IEventService
 
         // Validate CyberId
 
-        var existingCyber = await _eventRepository.FindByIdAsync(event.CyberId);
+        var existingCyber = await _eventRepository.FindByIdAsync(evento.CyberId);
 
         if (existingCyber == null)
             return new EventResponse("Invalid Cyber");
@@ -82,10 +82,11 @@ public class EventService : IEventService
        
         
         // Modify Fields
-        existingEvent.Title = event.Title;
-        existingEvent.Addres = event.Addres;
-        existingEvent.Date = event.Date;
-        existingEvent.Description = event.Description;
+        existingEvent.Title = evento.Title;
+        existingEvent.Address = evento.Address;
+        existingEvent.UrlPublication = evento.UrlPublication;
+        existingEvent.Description = evento.Description;
+        existingEvent.ImageEvent = evento.ImageEvent;
 
         try
         {
