@@ -15,4 +15,7 @@ public class Tournament
     public Cyber Cyber { get; set; }
     
     public IList<RegisterTournament> RegisterTournaments { get; set; } = new List<RegisterTournament>();
+    
+    
+    
 }

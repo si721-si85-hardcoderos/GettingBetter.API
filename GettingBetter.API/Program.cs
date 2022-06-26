@@ -2,6 +2,10 @@ using GettingBetter.API.GettingBetter_System.Domain.Repositories;
 using GettingBetter.API.GettingBetter_System.Domain.Services;
 using GettingBetter.API.GettingBetter_System.Persistence.Repositories;
 using GettingBetter.API.GettingBetter_System.Services;
+using GettingBetter.API.Learning_System.Domain.Repositories;
+using GettingBetter.API.Learning_System.Domain.Services;
+using GettingBetter.API.Learning_System.Persistence.Repositories;
+using GettingBetter.API.Learning_System.Services;
 using GettingBetter.API.Shared.Domain.Repositories;
 using GettingBetter.API.Shared.Mapping;
 using GettingBetter.API.Shared.Persistence.Contexts;
@@ -67,6 +71,9 @@ builder.Services.AddScoped<IStudentService, StudentService>();
 
 builder.Services.AddScoped<ICyberRepository, CyberRepository>();
 builder.Services.AddScoped<ICyberService, CyberService>();
+
+builder.Services.AddScoped<ILearningService, LearningService>();
+builder.Services.AddScoped<ILearningRepository, LearningRepository>();
 
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //builder.Services.AddScoped<IAdvisoryRepository, AdvisoryRepository>();

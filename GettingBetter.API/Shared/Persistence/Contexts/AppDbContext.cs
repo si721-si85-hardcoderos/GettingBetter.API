@@ -206,6 +206,30 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
              builder.Entity<RegisterTournament>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
              builder.Entity<RegisterTournament>().Property(p => p.StudentId).IsRequired();
              builder.Entity<RegisterTournament>().Property(p => p.TournamentId).IsRequired();
+             builder.Entity<RegisterTournament>().HasData(
+                 new RegisterTournament
+                 {
+                     Id = 1,
+                     StudentId = 1,
+                     TournamentId = 2
+                 }
+             );
+             builder.Entity<RegisterTournament>().HasData(
+                 new RegisterTournament
+                 {
+                     Id = 2,
+                     StudentId = 1,
+                     TournamentId = 3
+                 }
+             );
+             builder.Entity<RegisterTournament>().HasData(
+                 new RegisterTournament
+                 {
+                     Id = 3,
+                     StudentId = 2,
+                     TournamentId = 1
+                 }
+             );
              
              builder.Entity<Tournament>()
                  .HasMany(p => p.RegisterTournaments)
@@ -217,6 +241,72 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                  .WithOne(p => p.Student)
                  .HasForeignKey(p => p.StudentId);
              builder.UseSnakeCaseNamingConvention();
+             
+             
+             
+             builder.Entity<Learning>().ToTable("Learning");
+             builder.Entity<Learning>().HasKey(p => p.Id);
+             builder.Entity<Learning>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+             builder.Entity<Learning>().Property(p => p.StudentId).IsRequired();
+             builder.Entity<Learning>().Property(p => p.CoachId).IsRequired();
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 1,
+                     StudentId = 1,
+                     CoachId = 1
+                 }
+             );
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 2,
+                     StudentId = 1,
+                     CoachId = 2
+                 }
+             );
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 3,
+                     StudentId = 2,
+                     CoachId = 2
+                 }
+             );
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 4,
+                     StudentId = 2,
+                     CoachId = 3
+                 }
+             );
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 5,
+                     StudentId = 3,
+                     CoachId = 3
+                 }
+             );
+             builder.Entity<Student>()
+                 .HasMany(p => p.Learnings)
+                 .WithOne(p => p.Student)
+                 .HasForeignKey(p => p.StudentId);
+             builder.UseSnakeCaseNamingConvention();
+             
+             builder.Entity<Coach>()
+                 .HasMany(p => p.Learnings)
+                 .WithOne(p => p.Coach)
+                 .HasForeignKey(p => p.CoachId);
+             builder.UseSnakeCaseNamingConvention();
+
+             
+
+
+
+
+
         }
     }
 }

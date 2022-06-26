@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using GettingBetter.API.GettingBetter_System.Domain.Models;
 using GettingBetter.API.GettingBetter_System.Resources;
+using GettingBetter.API.Learning_System.Domain.Models;
+using GettingBetter.API.Learning_System.Resources;
 using GettingBetter.API.Tournament_System.Domain.Models;
 using GettingBetter.API.Tournament_System.Resources;
 
@@ -15,5 +17,6 @@ public class ResourceToModelProfile : Profile
         CreateMap<SaveCyberResource, Cyber>();
         CreateMap<SaveTournamentResource, Tournament>();
         CreateMap<SaveRegisterTournamentResource, RegisterTournament>();
+        CreateMap<SaveLearningResource, Learning>();
     }
 }

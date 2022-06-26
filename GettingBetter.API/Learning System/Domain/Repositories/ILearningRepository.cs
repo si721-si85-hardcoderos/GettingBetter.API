@@ -8,7 +8,8 @@ public interface ILearningRepository
     Task AddAsync(Learning learning);
     Task<Learning> FindByIdAsync(int learningId);
  
-    //Task<IEnumerable<Learning>> FindByStudentIddAsync(inId);
+    Task<IEnumerable<Learning>> FindByStudentIdAsync(int studentId);
+    Task<IEnumerable<Learning>> FindByCoachIdAsync(int coachId);
     
     void Update(Learning learning);
     void Remove(Learning learning); 

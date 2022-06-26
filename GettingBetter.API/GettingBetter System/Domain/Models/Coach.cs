@@ -1,4 +1,6 @@
-﻿namespace GettingBetter.API.GettingBetter_System.Domain.Models;
+﻿using GettingBetter.API.Learning_System.Domain.Models;
+
+namespace GettingBetter.API.GettingBetter_System.Domain.Models;
 
 public class Coach
 {
@@ -16,5 +18,7 @@ public class Coach
     
     // Relationships
 
-    public IList<Student> Students { get; set; } = new List<Student>(); 
+    public IList<Student> Students { get; set; } = new List<Student>();
+
+    public IList<Learning> Learnings { get; set; } = new List<Learning>();
 }

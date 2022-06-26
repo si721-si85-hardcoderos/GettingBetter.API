@@ -16,7 +16,8 @@ public class LearningRepository : BaseRepository, ILearningRepository
     {
         return await _context.Learnings
             .Include(p => p.Coach)
-            .ToListAsync();
+            .Include(a => a.Student)
+                .ToListAsync();
             
     }
     
@@ -29,10 +30,29 @@ public class LearningRepository : BaseRepository, ILearningRepository
     {
         return await _context.Learnings
             .Include(p => p.Coach)
-            .Include(p => p.Coach)
+            .Include(a => a.Student)
             .FirstOrDefaultAsync(p => p.Id == learningId);
         
     }
+    
+    public async Task<IEnumerable<Learning>> FindByStudentIdAsync(int studentId)
+    {
+        return await _context.Learnings
+            .Where(p => p.StudentId == studentId)
+            .Include(p => p.Student)
+            .ToListAsync();
+    }
+    public async Task<IEnumerable<Learning>> FindByCoachIdAsync(int coachId)
+    {
+        return await _context.Learnings
+            .Where(p => p.CoachId == coachId)
+            .Include(p => p.Coach)
+            .ToListAsync();
+    }
+    
+    
+    
+    
     
     public void Update(Learning learning)
     {
