@@ -22,5 +22,68 @@ public class AdvertisementService : IAdvertisementService
     {
         return await _advertisementRepository.ListAsync();
     }
+    
+    public async Task<AdvertisementResponse> SaveAsync(Advertisement advertisement)
+        {
+            try
+            {
+                await _advertisementRepository.AddAsync(advertisement);
+                await _unitOfWork.CompleteAsync();
+                return new AdvertisementResponse(advertisement);
+            }
+            catch (Exception e)
+            {
+                return new AdvertisementResponse($"An error occurred while saving the Advertisement: {e.Message}");
+            }
+        }
 
+        public async Task<AdvertisementResponse> UpdateAsync(int id, Advertisement advertisement)
+        {
+            var existingAdvertisement = await _advertisementRepository.FindByIdAsync(id);
+
+            if (existingAdvertisement == null)
+                return new AdvertisementResponse("Advertisement not found.");
+
+          
+           existingAdvertisement.ImageAdvertisement = advertisement.ImageAdvertisement;
+           existingAdvertisement.UrlPublication = advertisement.UrlPublication;
+           existingAdvertisement.Title = advertisement.Title;
+           existingAdvertisement.Description = advertisement.Description;
+          
+
+
+            try
+            {
+                _advertisementRepository.Update(existingAdvertisement);
+                await _unitOfWork.CompleteAsync();
+
+                return new AdvertisementResponse(existingAdvertisement);
+            }
+            catch (Exception e)
+            {
+                return new AdvertisementResponse($"An error occurred while updating the advertisement: {e.Message}");
+            }
+        }
+
+        public async Task<AdvertisementResponse> DeleteAsync(int advertisementId)
+        {
+            var existingAdvertisement = await _advertisementRepository.FindByIdAsync(advertisementId);
+
+            if (existingAdvertisement == null)
+                return new AdvertisementResponse("Cyber not found.");
+
+            try
+            {
+                _advertisementRepository.Remove(existingAdvertisement);
+                await _unitOfWork.CompleteAsync();
+
+                return new AdvertisementResponse(existingAdvertisement);
+            }
+            catch (Exception e)
+            {
+                // Do some logging stuff
+                return new AdvertisementResponse($"An error occurred while deleting the cyber: {e.Message}");
+            }
+        }
+    
 }

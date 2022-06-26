@@ -7,4 +7,7 @@ public interface IAdvertisementRepository
     Task<IEnumerable<Advertisement>> ListAsync();
     Task AddAsync(Advertisement advertisement);
     Task<Advertisement> FindByIdAsync(int advertisementId);
+    
+    void Update(Advertisement advertisementId);
+    void Remove(Advertisement advertisementId);
 }

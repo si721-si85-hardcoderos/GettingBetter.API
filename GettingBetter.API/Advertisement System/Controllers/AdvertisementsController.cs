@@ -24,7 +24,7 @@ public class AdvertisementsController : ControllerBase
     public async Task<IEnumerable<AdvertisementResource>> GetAllAsync()
     {
         var advertisement = await _advertisementService.ListAsync();
-        var resources = _mapper.Map<IEnumerable<Advertisement>, IEnumerable<AdvertisementResource>>(advertisements);
+        var resources = _mapper.Map<IEnumerable<Advertisement>, IEnumerable<AdvertisementResource>>(advertisement);
 
         return resources;
 
@@ -46,6 +46,37 @@ public class AdvertisementsController : ControllerBase
         var advertisementResource = _mapper.Map<Advertisement, AdvertisementResource>(result.Resource);
 
         return Ok(advertisementResource);
+    }
+    
+    [HttpPut("{id}")]
+    public async Task<IActionResult> PutAsync(int id, [FromBody] SaveAdvertisementResource resource)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState.GetErrorMessages());
+
+        var advertisement = _mapper.Map<SaveAdvertisementResource, Advertisement>(resource);
+
+        var result = await _advertisementService.UpdateAsync(id, advertisement);
+
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var cyberResource = _mapper.Map<Advertisement, AdvertisementResource>(result.Resource);
+
+        return Ok(cyberResource);
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        var result = await _advertisementService.DeleteAsync(id);
+        
+        if (!result.Success)
+            return BadRequest(result.Message);
+
+        var cyberResource = _mapper.Map<Advertisement, AdvertisementResource>(result.Resource);
+
+        return Ok(cyberResource);
     }
     
 }

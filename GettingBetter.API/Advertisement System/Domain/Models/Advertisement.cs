@@ -1,4 +1,4 @@
-﻿namespace GettingBetter.API.Advertisement_System.Domain;
+﻿namespace GettingBetter.API.Advertisement_System.Domain.Models;
 
 public class Advertisement
 {
