@@ -1,4 +1,6 @@
-﻿using GettingBetter.API.GettingBetter_System.Domain.Models;
+﻿using GettingBetter.API.Advertisement_System.Domain.Models;
+using GettingBetter.API.Event_System.Domain;
+using GettingBetter.API.GettingBetter_System.Domain.Models;
 using GettingBetter.API.Shared.Extensions;
 using GettingBetter.API.Tournament_System.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +17,9 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
 
         public DbSet<Tournament> Tournaments { get; set; }
         
+        public DbSet<Advertisement> Advertisements { get; set; }
         
+        public DbSet<Event> Events { get; set; }
         public DbSet<RegisterTournament> RegisterTournaments { get; set; } 
         public AppDbContext(DbContextOptions options) : base(options)
         {
@@ -213,6 +217,47 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                  .HasMany(p =>p.RegisterTournaments)
                  .WithOne(p => p.Student)
                  .HasForeignKey(p => p.StudentId);
+             
+
+
+             builder.Entity<Advertisement>().ToTable("Advertisements");
+             builder.Entity<Advertisement>().HasKey(p => p.Id);
+             builder.Entity<Advertisement>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+             builder.Entity<Advertisement>().Property(p => p.Title).IsRequired().HasMaxLength(50);
+             builder.Entity<Advertisement>().Property(p => p.Description).IsRequired().HasMaxLength(900);
+             builder.Entity<Advertisement>().Property(p => p.ImageAdvertisement).IsRequired().HasMaxLength(120); 
+             builder.Entity<Advertisement>().Property(p => p.UrlPublication).IsRequired().HasMaxLength(120);  
+             /*builder.Entity<Advertisement>().HasData(
+                 new Advertisement { 
+                     Id = 1,
+                     Title = "Conoce todos los detalles acerca de este proyecto de ley y cómo podría afectar al mercado de apuestas online en el país.",
+                     Description = "Impuesto a los juegos y apuestas online: todo lo que debes saber sobre esta iniciativa",
+                     ImageAdvertisement = "https://picsum.photos/200/300",
+                     UrlPublication = "https://gestion.pe/economia/juegos-y-apuestas-online-proyecto-impuestos-pagos-y-todo-lo-que-debes-saber-sobre-la-iniciativa-apuestas-deportivas-casino-online-rmmn-emcc-noticia/"
+                 } 
+             );
+
+             builder.Entity<Advertisement>().HasData(
+                 new Advertisement { 
+                     Id = 2,
+                     Title = "¡Perú clasificado al mundial!",
+                     Description = "El seleccionado peruano logró hacerse con un cupo para el próximo mundial a realizarse en Dinamarca. Conoce aquí quiénes nos representarán en el certamen más importante de EA Sports FIFA a nivel mundial.",
+                     ImageAdvertisement = "https://picsum.photos/200/300",
+                     UrlPublication = "https://larepublica.pe/videojuegos/esports/2022/06/20/peru-logra-la-clasificacion-al-mundial-de-fifae-nations-cup-luego-de-derrotar-a-chile-brasil-seleccion-peruana-ea-sports-fifa/"
+                 } 
+             );
+
+             builder.Entity<Advertisement>().HasData(
+                 new Advertisement { 
+                     Id = 3,
+                     Title = "¿Cuánto puede ganar un gamer profesional en Perú?",
+                     Description = "Factores como la popularidad del juego, la experiencia y la habilidad son claves para determinar un monto que en el extranjero puede llegar a millones.",
+                     ImageAdvertisement = "https://picsum.photos/200/300",
+                     UrlPublication = "https://larepublica.pe/videojuegos/esports/2022/06/17/esports-cuanto-puede-ganar-un-gamer-profesional-en-peru-gaming-gamer-jugador-profesiona/"
+                 } 
+             );
+             */
+
              builder.UseSnakeCaseNamingConvention();
         }
     }
