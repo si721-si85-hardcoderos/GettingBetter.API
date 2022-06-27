@@ -1,6 +1,7 @@
 using GettingBetter.API.Event_System.Domain.Repositories;
 using GettingBetter.API.Event_System.Domain.Services;
 using GettingBetter.API.Event_System.Persistence.Repositories;
+using GettingBetter.API.Event_System.Services;
 using GettingBetter.API.GettingBetter_System.Domain.Repositories;
 using GettingBetter.API.GettingBetter_System.Domain.Services;
 using GettingBetter.API.GettingBetter_System.Persistence.Repositories;
@@ -80,8 +81,8 @@ builder.Services.AddScoped<IRegisterTournamentRepository, RegisterTournamentRepo
 builder.Services.AddScoped<IRegisterTournamentService, RegisterTournamentService>();
 
 // Builder de events
-//builder.Services.AddScoped<IEventRepository, EventRepository>();
-//builder.Services.AddScoped<IEventService, IEventService>();
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+builder.Services.AddScoped<IEventService, EventService>();
 
 
 // AutoMapper Configuration
