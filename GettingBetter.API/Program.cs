@@ -1,3 +1,7 @@
+using GettingBetter.API.Advertisement_System.Domain.Repositories;
+using GettingBetter.API.Advertisement_System.Domain.Services;
+using GettingBetter.API.Advertisement_System.Persistence.Repositories;
+using GettingBetter.API.Advertisement_System.Services;
 using GettingBetter.API.GettingBetter_System.Domain.Repositories;
 using GettingBetter.API.GettingBetter_System.Domain.Services;
 using GettingBetter.API.GettingBetter_System.Persistence.Repositories;
@@ -73,6 +77,10 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 //builder.Services.AddScoped<IAdvisoryService, AdvisoryService>();
 builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
 builder.Services.AddScoped<ITournamentService, TournamentService>();
+
+builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
+builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
+
 builder.Services.AddScoped<IRegisterTournamentRepository, RegisterTournamentRepository>();
 builder.Services.AddScoped<IRegisterTournamentService, RegisterTournamentService>();
 // AutoMapper Configuration
