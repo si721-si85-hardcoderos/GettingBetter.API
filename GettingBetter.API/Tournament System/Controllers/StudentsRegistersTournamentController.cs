@@ -6,34 +6,39 @@ using GettingBetter.API.Tournament_System.Resources;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 
-namespace GettingBetter.API.Tournament_System.Controllers;
-[ApiController]
-[Route("/api/v1/students/{studentId}/registerTournaments")]
-[Produces(MediaTypeNames.Application.Json)]
-public class StudentsRegistersTournamentController : ControllerBase
+namespace GettingBetter.API.Tournament_System.Controllers
 {
-    private readonly IRegisterTournamentService _registerTournamentService;
-    private readonly IMapper _mapper;
-
-    public StudentsRegistersTournamentController(IRegisterTournamentService registerTournamentService, IMapper mapper)
+    [ApiController]
+    [Route("/api/v1/students/{studentId}/registerTournaments")]
+    [Produces(MediaTypeNames.Application.Json)]
+    public class StudentsRegistersTournamentController : ControllerBase
     {
-        _registerTournamentService = registerTournamentService;
-        _mapper = mapper;
-    }
+        private readonly IRegisterTournamentService _registerTournamentService;
+        private readonly IMapper _mapper;
 
-    [HttpGet]
-    [SwaggerOperation(
-        Summary = "Get All Registered of Tournaments for given Student",
-        Description = "Get existing Registered of Tournaments associated with the specified C",
-        OperationId = "GetRegisterStudent",
-        Tags = new[] { "Students" }
-    )]
-    public async Task<IEnumerable<RegisterTournamentResource>> GetAllByStudentIdAsync(int studentId)
-    {
-        var registerTournament = await _registerTournamentService.ListByStudentIdAsync(studentId);
+        public StudentsRegistersTournamentController(IRegisterTournamentService registerTournamentService,
+            IMapper mapper)
+        {
+            _registerTournamentService = registerTournamentService;
+            _mapper = mapper;
+        }
 
-        var resources = _mapper.Map<IEnumerable<RegisterTournament>, IEnumerable<RegisterTournamentResource>>(registerTournament);
+        [HttpGet]
+        [SwaggerOperation(
+            Summary = "Get All Registered of Tournaments for given Student",
+            Description = "Get existing Registered of Tournaments associated with the specified C",
+            OperationId = "GetRegisterStudent",
+            Tags = new[] {"Students"}
+        )]
+        public async Task<IEnumerable<RegisterTournamentResource>> GetAllByStudentIdAsync(int studentId)
+        {
+            var registerTournament = await _registerTournamentService.ListByStudentIdAsync(studentId);
 
-        return resources;
+            var resources =
+                _mapper.Map<IEnumerable<RegisterTournament>, IEnumerable<RegisterTournamentResource>>(
+                    registerTournament);
+
+            return resources;
+        }
     }
 }

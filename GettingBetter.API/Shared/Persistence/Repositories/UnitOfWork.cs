@@ -1,19 +1,21 @@
 ﻿using GettingBetter.API.Shared.Domain.Repositories;
 using GettingBetter.API.Shared.Persistence.Contexts;
 
-namespace GettingBetter.API.Shared.Persistence.Repositories;
-
-public class UnitOfWork : IUnitOfWork
+namespace GettingBetter.API.Shared.Persistence.Repositories
 {
-    private readonly AppDbContext _context;
 
-    public UnitOfWork(AppDbContext context)
+    public class UnitOfWork : IUnitOfWork
     {
-        _context = context;
-    }
+        private readonly AppDbContext _context;
 
-    public async Task CompleteAsync()
-    {
-        await _context.SaveChangesAsync();
+        public UnitOfWork(AppDbContext context)
+        {
+            _context = context;
+        }
+
+        public async Task CompleteAsync()
+        {
+            await _context.SaveChangesAsync();
+        }
     }
 }

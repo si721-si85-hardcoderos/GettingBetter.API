@@ -1,7 +1,33 @@
+//using GettingBetter.API.Advertisement_System.Domain.Repositories;
+//using GettingBetter.API.Advertisement_System.Domain.Services;
+//using GettingBetter.API.Advertisement_System.Persistence.Repositories;
+//using GettingBetter.API.Advertisement_System.Services;
+
+using GettingBetter.API.Advertisement_System.Domain.Repositories;
+using GettingBetter.API.Advertisement_System.Domain.Services;
+using GettingBetter.API.Advertisement_System.Persistence.Repositories;
+using GettingBetter.API.Advertisement_System.Services;
+using GettingBetter.API.Advisory_System.Domain.Repositories;
+using GettingBetter.API.Advisory_System.Domain.Services;
+using GettingBetter.API.Advisory_System.Persistence.Repositories;
+using GettingBetter.API.Advisory_System.Services;
+using GettingBetter.API.Event_System.Domain.Repositories;
+using GettingBetter.API.Event_System.Domain.Services;
+using GettingBetter.API.Event_System.Persistence.Repositories;
+using GettingBetter.API.Event_System.Services;
+//using GettingBetter.API.Event_System.Domain.Repositories;
+//using GettingBetter.API.Event_System.Domain.Services;
+//using GettingBetter.API.Event_System.Persistence.Repositories;
+//using GettingBetter.API.Event_System.Services;
 using GettingBetter.API.GettingBetter_System.Domain.Repositories;
 using GettingBetter.API.GettingBetter_System.Domain.Services;
 using GettingBetter.API.GettingBetter_System.Persistence.Repositories;
 using GettingBetter.API.GettingBetter_System.Services;
+using GettingBetter.API.Learning_System.Domain.Repositories;
+using GettingBetter.API.Learning_System.Domain.Services;
+using GettingBetter.API.Learning_System.Persistence.Repositories;
+using GettingBetter.API.Learning_System.Services;
+//using GettingBetter.API.Learning_System.Services;
 using GettingBetter.API.Shared.Domain.Repositories;
 using GettingBetter.API.Shared.Mapping;
 using GettingBetter.API.Shared.Persistence.Contexts;
@@ -54,6 +80,17 @@ builder.Services.AddDbContext<AppDbContext>(
         .EnableDetailedErrors());
 
 // Add lowercase routes
+var _MyCors = "MyCors";
+builder.Services.AddCors(options =>
+
+{
+    options.AddPolicy(name: _MyCors, builder =>
+    {
+        builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod(); ;
+    });
+});
+
+
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
@@ -68,13 +105,26 @@ builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<ICyberRepository, CyberRepository>();
 builder.Services.AddScoped<ICyberService, CyberService>();
 
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-//builder.Services.AddScoped<IAdvisoryRepository, AdvisoryRepository>();
-//builder.Services.AddScoped<IAdvisoryService, AdvisoryService>();
+builder.Services.AddScoped<IEventService, EventService>(); 
+builder.Services.AddScoped<IEventRepository, EventRepository>();
+
+builder.Services.AddScoped<ILearningRepository, LearningRepository>();
+builder.Services.AddScoped<ILearningService,LearningService>();
+
+builder.Services.AddScoped<IAdvertisementRepository, AdvertisementRepository>();
+builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
+
+builder.Services.AddScoped<IAdvisoryRepository, AdvisoryRepository>();
+builder.Services.AddScoped<IAdvisoryService, AdvisoryService>();
+
 builder.Services.AddScoped<ITournamentRepository, TournamentRepository>();
 builder.Services.AddScoped<ITournamentService, TournamentService>();
+
 builder.Services.AddScoped<IRegisterTournamentRepository, RegisterTournamentRepository>();
 builder.Services.AddScoped<IRegisterTournamentService, RegisterTournamentService>();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 // AutoMapper Configuration
 
 builder.Services.AddAutoMapper(
@@ -92,7 +142,7 @@ using (var context = scope.ServiceProvider.GetService<AppDbContext>())
 }
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+if (app.Environment.IsProduction())
 {
     app.UseSwagger();
     app.UseSwaggerUI(options =>
@@ -102,10 +152,12 @@ if (app.Environment.IsDevelopment())
         });
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseCors(_MyCors);
 
 app.Run();

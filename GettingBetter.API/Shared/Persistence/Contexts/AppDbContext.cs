@@ -1,6 +1,8 @@
 ﻿using GettingBetter.API.Advertisement_System.Domain.Models;
-using GettingBetter.API.Event_System.Domain;
+using GettingBetter.API.Advisory_System.Domain.Models;
+using GettingBetter.API.Event_System.Domain.Models;
 using GettingBetter.API.GettingBetter_System.Domain.Models;
+using GettingBetter.API.Learning_System.Domain.Models;
 using GettingBetter.API.Shared.Extensions;
 using GettingBetter.API.Tournament_System.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -17,10 +19,12 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
 
         public DbSet<Tournament> Tournaments { get; set; }
         
-        public DbSet<Advertisement> Advertisements { get; set; }
-        
-        public DbSet<Event> Events { get; set; }
         public DbSet<RegisterTournament> RegisterTournaments { get; set; } 
+        
+        public DbSet<Learning> Learnings { get; set; } 
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Advisory> Advisories { get; set; }
+        public DbSet<Advertisement> Advertisements { get; set; } 
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -28,6 +32,26 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            builder.Entity<Tournament>().ToTable("Tournaments");
+            builder.Entity<Tournament>().HasKey(p => p.Id);
+            builder.Entity<Tournament>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+            builder.Entity<Tournament>().Property(p => p.Title).IsRequired().HasMaxLength(30);
+            builder.Entity<Tournament>().Property(p => p.Description).IsRequired().HasMaxLength(900);
+            builder.Entity<Tournament>().Property(p => p.CyberId).IsRequired();
+            builder.Entity<Tournament>().Property(p => p.Date).IsRequired().HasMaxLength(30); 
+            builder.Entity<Tournament>().Property(p => p.Addres).IsRequired().HasMaxLength(120);  
+            
+            builder.Entity<Tournament>().HasData(
+                new Tournament { 
+                    Id = 1,
+                    Title = "¡Torneo de Dota 2 para 16 jugadores incribete!",
+                    Description = "El torneo se realizará a partir de las 4pm, el premio sera de s/100, los concursantes" +
+                                  "deberan combatir 1 vs 1 en linea media sin la posibilidad de hacer jungla ",
+                    CyberId = 1,
+                    Date = "30062022",
+                    Addres = "AV. Javier Prado Lt2 Manzada D4"
+                } 
+            );
 
             builder.Entity<Coach>().ToTable("Coaches");
             builder.Entity<Coach>().HasKey(p => p.Id);
@@ -183,30 +207,36 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                 .WithOne(p => p.Cyber)
                 .HasForeignKey(p => p.CyberId);
 
-             builder.Entity<Tournament>().ToTable("Tournaments");
-             builder.Entity<Tournament>().HasKey(p => p.Id);
-             builder.Entity<Tournament>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
-             builder.Entity<Tournament>().Property(p => p.Title).IsRequired().HasMaxLength(30);
-             builder.Entity<Tournament>().Property(p => p.Description).IsRequired().HasMaxLength(900);
-             builder.Entity<Tournament>().Property(p => p.CyberId).IsRequired();
-             builder.Entity<Tournament>().Property(p => p.Date).IsRequired().HasMaxLength(30); 
-             builder.Entity<Tournament>().Property(p => p.Addres).IsRequired().HasMaxLength(120);  
-             builder.Entity<Tournament>().HasData(
-                 new Tournament { 
-                     Id = 1,
-                     Title = "¡Torneo de Dota 2 para 16 jugadores incribete!",
-                     Description = "El torneo se realizará a partir de las 4pm, el premio sera de s/100, los concursantes" +
-                                   "deberan combatir 1 vs 1 en linea media sin la posibilidad de hacer jungla ",
-                     CyberId = 1,
-                     Date = "30/06/2022",
-                     Addres = "AV. Javier Prado Lt2 Manzada D4"
-                 } 
-             );
+             
              builder.Entity<RegisterTournament>().ToTable("Register_Tournaments");
              builder.Entity<RegisterTournament>().HasKey(p => p.Id);
              builder.Entity<RegisterTournament>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
              builder.Entity<RegisterTournament>().Property(p => p.StudentId).IsRequired();
              builder.Entity<RegisterTournament>().Property(p => p.TournamentId).IsRequired();
+             builder.Entity<RegisterTournament>().HasData(
+                 new RegisterTournament
+                 {
+                     Id = 1,
+                     StudentId = 1,
+                     TournamentId = 2
+                 }
+             );
+             builder.Entity<RegisterTournament>().HasData(
+                 new RegisterTournament
+                 {
+                     Id = 2,
+                     StudentId = 1,
+                     TournamentId = 3
+                 }
+             );
+             builder.Entity<RegisterTournament>().HasData(
+                 new RegisterTournament
+                 {
+                     Id = 3,
+                     StudentId = 2,
+                     TournamentId = 1
+                 }
+             );
              
              builder.Entity<Tournament>()
                  .HasMany(p => p.RegisterTournaments)
@@ -217,17 +247,71 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                  .HasMany(p =>p.RegisterTournaments)
                  .WithOne(p => p.Student)
                  .HasForeignKey(p => p.StudentId);
+
+             builder.Entity<Learning>().ToTable("Learning");
+             builder.Entity<Learning>().HasKey(p => p.Id);
+             builder.Entity<Learning>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+             builder.Entity<Learning>().Property(p => p.StudentId).IsRequired();
+             builder.Entity<Learning>().Property(p => p.CoachId).IsRequired();
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 1,
+                     StudentId = 1,
+                     CoachId = 1
+                 }
+             );
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 2,
+                     StudentId = 1,
+                     CoachId = 2
+                 }
+             );
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 3,
+                     StudentId = 2,
+                     CoachId = 2
+                 }
+             );
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 4,
+                     StudentId = 2,
+                     CoachId = 3
+                 }
+             );
+             builder.Entity<Learning>().HasData(
+                 new Learning
+                 {
+                     Id = 5,
+                     StudentId = 3,
+                     CoachId = 3
+                 }
+             );
+             builder.Entity<Student>()
+                 .HasMany(p => p.Learnings)
+                 .WithOne(p => p.Student)
+                 .HasForeignKey(p => p.StudentId);
+
+             builder.Entity<Coach>()
+                 .HasMany(p => p.Learnings)
+                 .WithOne(p => p.Coach)
+                 .HasForeignKey(p => p.CoachId);
              
-
-
+             
              builder.Entity<Advertisement>().ToTable("Advertisements");
              builder.Entity<Advertisement>().HasKey(p => p.Id);
              builder.Entity<Advertisement>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
              builder.Entity<Advertisement>().Property(p => p.Title).IsRequired().HasMaxLength(50);
              builder.Entity<Advertisement>().Property(p => p.Description).IsRequired().HasMaxLength(900);
              builder.Entity<Advertisement>().Property(p => p.ImageAdvertisement).IsRequired().HasMaxLength(120); 
-             builder.Entity<Advertisement>().Property(p => p.UrlPublication).IsRequired().HasMaxLength(120);  
-             /*builder.Entity<Advertisement>().HasData(
+             builder.Entity<Advertisement>().Property(p => p.UrlPublication).IsRequired();  
+             builder.Entity<Advertisement>().HasData(
                  new Advertisement { 
                      Id = 1,
                      Title = "Conoce todos los detalles acerca de este proyecto de ley y cómo podría afectar al mercado de apuestas online en el país.",
@@ -256,9 +340,57 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                      UrlPublication = "https://larepublica.pe/videojuegos/esports/2022/06/17/esports-cuanto-puede-ganar-un-gamer-profesional-en-peru-gaming-gamer-jugador-profesiona/"
                  } 
              );
-             */
+             
+            builder.Entity<Event>().ToTable("Events");
+            builder.Entity<Event>().HasKey(p => p.Id);
+            builder.Entity<Event>().Property(p => p.Id).IsRequired().ValueGeneratedOnAdd();
+            builder.Entity<Event>().Property(p => p.Title).IsRequired().HasMaxLength(30);
+            builder.Entity<Event>().Property(p => p.Description).IsRequired().HasMaxLength(50);
+            builder.Entity<Event>().Property(p => p.CyberId).IsRequired();
+            builder.Entity<Event>().Property(p => p.Address).IsRequired().HasMaxLength(30); 
+            builder.Entity<Event>().Property(p => p.UrlPublication).IsRequired().HasMaxLength(50);
+            builder.Entity<Event>().Property(p => p.ImageEvent).IsRequired().HasMaxLength(50);  
+            builder.Entity<Event>().HasData(
+                 new Event { 
+                     Id = 1,
+                     Title = "¡Esports en 2022, lo que se viene a Perú!",
+                     Description = "La industria de los Esports continúa creciendo pese a los contratiempos provocados por la pandemia del COVID-19. Te explicamos qué es lo que se espera para la escena peruana en las disciplinas más importantes de los deportes electrónicos este año",
+                     CyberId = 1,
+                     ImageEvent = "http://sislander.com/wp-content/uploads/2015/04/cyber_cafe_gaming.jpg",
+                     Address = "AV. Javier Prado Lt2 Manzada D4",
+                     UrlPublication = "https://elcomercio.pe/tecnologia/e-sports/esports-en-peru-2022-que-tendencias-e-iniciativas-se-esperan-para-la-escena-peruana-este-ano-dota-2-league-of-legends-free-fire-valorant-counter-strike-torneos-videojuegos-competencias-noticia/"
+                 } 
+            );
+            builder.Entity<Event>().HasData(
+                 new Event { 
+                     Id = 2,
+                     Title = "¡Esports en 2022, lo que se viene a Perú!",
+                     Description = "La industria de los Esports continúa creciendo pese a los contratiempos provocados por la pandemia del COVID-19. Te explicamos qué es lo que se espera para la escena peruana en las disciplinas más importantes de los deportes electrónicos este año",
+                     CyberId = 1,
+                     ImageEvent = "http://sislander.com/wp-content/uploads/2015/04/cyber_cafe_gaming.jpg",
+                     Address = "Estadio Nacional",
+                     UrlPublication = "https://limagamesweek.com/"
+                 } 
+            );
+            builder.Entity<Event>().HasData(
+                 new Event { 
+                     Id = 3,
+                     Title = "¡Esports en 2022, lo que se viene a Perú!",
+                     Description = "La industria de los Esports continúa creciendo pese a los contratiempos provocados por la pandemia del COVID-19. Te explicamos qué es lo que se espera para la escena peruana en las disciplinas más importantes de los deportes electrónicos este año",
+                     CyberId = 1,
+                     ImageEvent = "http://sislander.com/wp-content/uploads/2015/04/cyber_cafe_gaming.jpg",
+                     Address = "CC ARENALES",
+                     UrlPublication = "https://www.serperuano.com/2022/01/conoce-los-eventos-deportivos-y-de-esports-mas-importantes-que-nos-depara-el-2022/"
+                 } 
+            );
+            builder.Entity<Cyber>()
+                .HasMany(p => p.Events)
+                .WithOne(p => p.Cyber)
+                .HasForeignKey(p => p.CyberId);
+
 
              builder.UseSnakeCaseNamingConvention();
         }
     }
 }
+

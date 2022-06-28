@@ -5,7 +5,8 @@ using GettingBetter.API.GettingBetter_System.Domain.Services.Communication;
 using GettingBetter.API.Shared.Domain.Repositories;
 
 
-namespace GettingBetter.API.GettingBetter_System.Services;
+namespace GettingBetter.API.GettingBetter_System.Services
+{
 
 
     public class CyberService : ICyberService
@@ -45,15 +46,15 @@ namespace GettingBetter.API.GettingBetter_System.Services;
             if (existingCyber == null)
                 return new CyberResponse("Cyber not found.");
 
-          
-           existingCyber.FirstName = cyber.FirstName;
-           existingCyber.LastName = cyber.LastName;
-           existingCyber.Password = cyber.Password;
-           existingCyber.CyberName = cyber.CyberName;
-           existingCyber.CyberImage = cyber.CyberImage;
-           existingCyber.Bibliography = cyber.Bibliography;
-           existingCyber.Email = cyber.Email;
-           existingCyber.Password = cyber.Password;
+
+            existingCyber.FirstName = cyber.FirstName;
+            existingCyber.LastName = cyber.LastName;
+            existingCyber.Password = cyber.Password;
+            existingCyber.CyberName = cyber.CyberName;
+            existingCyber.CyberImage = cyber.CyberImage;
+            existingCyber.Bibliography = cyber.Bibliography;
+            existingCyber.Email = cyber.Email;
+            existingCyber.Password = cyber.Password;
 
 
             try
@@ -85,9 +86,10 @@ namespace GettingBetter.API.GettingBetter_System.Services;
             }
             catch (Exception e)
             {
-                // Do some logging stuff
+               
                 return new CyberResponse($"An error occurred while deleting the cyber: {e.Message}");
             }
         }
     }
+}
 

@@ -1,6 +1,7 @@
 ﻿using Swashbuckle.AspNetCore.Annotations;
 
-namespace GettingBetter.API.GettingBetter_System.Resources;
+namespace GettingBetter.API.GettingBetter_System.Resources
+{
 
 
     public class CyberResource
@@ -21,8 +22,9 @@ namespace GettingBetter.API.GettingBetter_System.Resources;
         public string Email { get; set; }
 
         public string Password { get; set; }
-        
+
         public string CyberImage { get; set; }
-        
-       
+
+
     }
+}
