@@ -4,125 +4,115 @@ using GettingBetter.API.GettingBetter_System.Domain.Services;
 using GettingBetter.API.GettingBetter_System.Domain.Services.Communication;
 using GettingBetter.API.Shared.Domain.Repositories;
 
-namespace GettingBetter.API.GettingBetter_System.Services;
-
-public class StudentService : IStudentService
+namespace GettingBetter.API.GettingBetter_System.Services
 {
-    private readonly IStudentRepository _studentRepository;
-    private readonly IUnitOfWork _unitOfWork;
-  //  private readonly ICoachRepository _coachRepository;
 
-    public StudentService(IStudentRepository studentRepository, IUnitOfWork unitOfWork, ICoachRepository coachRepository)
+    public class StudentService : IStudentService
     {
-        _studentRepository = studentRepository;
-        _unitOfWork = unitOfWork;
-        //_coachRepository = coachRepository;
-    }
+        private readonly IStudentRepository _studentRepository;
 
-    public async Task<IEnumerable<Student>> ListAsync()
-    {
-        return await _studentRepository.ListAsync();
-    }
+        private readonly IUnitOfWork _unitOfWork;
+      
 
-    /*public async Task<IEnumerable<Student>> ListByCoachIdAsync(int coachId)
-    {
-        return await _studentRepository.FindByCoachIdAsync(coachId);
-    }*/
-
-    public async Task<StudentResponse> SaveAsync(Student student)
-    {
-        // Validate CoachId
-
-       /* var existingCoach = await _coachRepository.FindByIdAsync(student.CoachId);
-
-        if (existingCoach == null)
-            return new StudentResponse("Invalid Coach");
-        */
-        // Validate 
-
-       
-
-        try
+        public StudentService(IStudentRepository studentRepository, IUnitOfWork unitOfWork,
+            ICoachRepository coachRepository)
         {
-            // Add Student
-            await _studentRepository.AddAsync(student);
-            
-            // Complete Transaction
-            await _unitOfWork.CompleteAsync();
-            
-            // Return response
-            return new StudentResponse(student);
-
-        }
-        catch (Exception e)
-        {
-            // Error Handling
-            return new StudentResponse($"An error occurred while saving the student: {e.Message}");
+            _studentRepository = studentRepository;
+            _unitOfWork = unitOfWork;
+          
         }
 
-        
-    }
-
-    public async Task<StudentResponse> UpdateAsync(int studentId, Student student)
-    {
-        var existingStudent = await _studentRepository.FindByIdAsync(studentId);
-        existingStudent.FirstName = student.FirstName;
-        existingStudent.LastName = student.LastName;
-        existingStudent.Password = student.Password;
-        existingStudent.NickName = student.NickName;
-        existingStudent.UserImage = student.UserImage;
-        existingStudent.NickName = student.NickName;
-        existingStudent.Email = student.Email;
-        // Validate Student
-
-        if (existingStudent == null)
-            return new StudentResponse("Student not found.");
-
-        // Validate CoachId
-
-       /* var existingCoach = await _coachRepository.FindByIdAsync(student.CoachId);
-
-        if (existingCoach == null)
-            return new StudentResponse("Invalid Coach");*/
-
-        try
+        public async Task<IEnumerable<Student>> ListAsync()
         {
-            _studentRepository.Update(existingStudent);
-            await _unitOfWork.CompleteAsync();
-
-            return new StudentResponse(existingStudent);
-            
-        }
-        catch (Exception e)
-        {
-            // Error Handling
-            return new StudentResponse($"An error occurred while updating the student: {e.Message}");
+            return await _studentRepository.ListAsync();
         }
 
-    }
+      
 
-    public async Task<StudentResponse> DeleteAsync(int studentId)
-    {
-        var existingStudent = await _studentRepository.FindByIdAsync(studentId);
-        
-        // Validate Student
-
-        if (existingStudent == null)
-            return new StudentResponse("Student not found.");
-        
-        try
+        public async Task<StudentResponse> SaveAsync(Student student)
         {
-            _studentRepository.Remove(existingStudent);
-            await _unitOfWork.CompleteAsync();
+           
 
-            return new StudentResponse(existingStudent);
-            
+
+            try
+            {
+                // Add Student
+                await _studentRepository.AddAsync(student);
+
+                // Complete Transaction
+                await _unitOfWork.CompleteAsync();
+
+                // Return response
+                return new StudentResponse(student);
+
+            }
+            catch (Exception e)
+            {
+                // Error Handling
+                return new StudentResponse($"An error occurred while saving the student: {e.Message}");
+            }
+
+
         }
-        catch (Exception e)
+
+        public async Task<StudentResponse> UpdateAsync(int studentId, Student student)
         {
-            // Error Handling
-            return new StudentResponse($"An error occurred while deleting the student: {e.Message}");
+            var existingStudent = await _studentRepository.FindByIdAsync(studentId);
+            existingStudent.FirstName = student.FirstName;
+            existingStudent.LastName = student.LastName;
+            existingStudent.Password = student.Password;
+            existingStudent.NickName = student.NickName;
+            existingStudent.UserImage = student.UserImage;
+            existingStudent.NickName = student.NickName;
+            existingStudent.Email = student.Email;
+            // Validate Student
+
+            if (existingStudent == null)
+                return new StudentResponse("Student not found.");
+
+            // Validate CoachId
+
+          
+
+            try
+            {
+                _studentRepository.Update(existingStudent);
+                await _unitOfWork.CompleteAsync();
+
+                return new StudentResponse(existingStudent);
+
+            }
+            catch (Exception e)
+            {
+                // Error Handling
+                return new StudentResponse($"An error occurred while updating the student: {e.Message}");
+            }
+
         }
 
+        public async Task<StudentResponse> DeleteAsync(int studentId)
+        {
+            var existingStudent = await _studentRepository.FindByIdAsync(studentId);
+
+            // Validate Student
+
+            if (existingStudent == null)
+                return new StudentResponse("Student not found.");
+
+            try
+            {
+                _studentRepository.Remove(existingStudent);
+                await _unitOfWork.CompleteAsync();
+
+                return new StudentResponse(existingStudent);
+
+            }
+            catch (Exception e)
+            {
+                // Error Handling
+                return new StudentResponse($"An error occurred while deleting the student: {e.Message}");
+            }
+
+        }
     }
 }

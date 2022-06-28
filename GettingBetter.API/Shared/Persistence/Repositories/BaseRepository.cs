@@ -1,13 +1,15 @@
 ﻿using GettingBetter.API.Shared.Persistence.Contexts;
 
-namespace GettingBetter.API.Shared.Persistence.Repositories;
-
-public class BaseRepository
+namespace GettingBetter.API.Shared.Persistence.Repositories
 {
-    protected readonly AppDbContext _context;
 
-    public BaseRepository(AppDbContext context)
+    public class BaseRepository
     {
-        _context = context;
-    } 
+        protected readonly AppDbContext _context;
+
+        public BaseRepository(AppDbContext context)
+        {
+            _context = context;
+        }
+    }
 }

@@ -1,34 +1,36 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace GettingBetter.API.Shared.Extensions;
-
-public static class ModelBuilderExtensions
+namespace GettingBetter.API.Shared.Extensions
 {
-    public static void UseSnakeCaseNamingConvention(this ModelBuilder builder)
+
+    public static class ModelBuilderExtensions
     {
-        foreach (var entity in builder.Model.GetEntityTypes())
+        public static void UseSnakeCaseNamingConvention(this ModelBuilder builder)
         {
-            entity.SetTableName(entity.GetTableName().ToSnakeCase());
-
-            foreach (var property in entity.GetProperties())
+            foreach (var entity in builder.Model.GetEntityTypes())
             {
-                property.SetColumnName(property.GetColumnBaseName().ToSnakeCase());
-            }
+                entity.SetTableName(entity.GetTableName().ToSnakeCase());
 
-            foreach (var key in entity.GetKeys())
-            {
-                key.SetName(key.GetName().ToSnakeCase());
-            }
+                foreach (var property in entity.GetProperties())
+                {
+                    property.SetColumnName(property.GetColumnBaseName().ToSnakeCase());
+                }
 
-            foreach (var foreignKey in entity.GetForeignKeys())
-            {
-                foreignKey.SetConstraintName(foreignKey.GetConstraintName().ToSnakeCase());
-            }
+                foreach (var key in entity.GetKeys())
+                {
+                    key.SetName(key.GetName().ToSnakeCase());
+                }
 
-            foreach (var index in entity.GetIndexes())
-            {
-                index.SetDatabaseName(index.GetDatabaseName().ToSnakeCase());
+                foreach (var foreignKey in entity.GetForeignKeys())
+                {
+                    foreignKey.SetConstraintName(foreignKey.GetConstraintName().ToSnakeCase());
+                }
+
+                foreach (var index in entity.GetIndexes())
+                {
+                    index.SetDatabaseName(index.GetDatabaseName().ToSnakeCase());
+                }
             }
         }
-    } 
+    }
 }

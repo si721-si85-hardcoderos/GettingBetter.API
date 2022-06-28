@@ -1,6 +1,8 @@
-﻿namespace GettingBetter.API.Shared.Domain.Repositories;
-
-public interface IUnitOfWork
+﻿namespace GettingBetter.API.Shared.Domain.Repositories
 {
-    Task CompleteAsync(); 
+
+    public interface IUnitOfWork
+    {
+        Task CompleteAsync();
+    }
 }
