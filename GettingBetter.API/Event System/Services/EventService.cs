@@ -127,5 +127,5 @@ public class EventService : IEventService
             return new EventResponse($"An error occurred while deleting the event: {e.Message}");
         }
 
-    } 
+    }
 }

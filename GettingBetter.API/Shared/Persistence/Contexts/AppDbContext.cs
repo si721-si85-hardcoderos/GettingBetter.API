@@ -314,7 +314,7 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
              builder.Entity<Advertisement>().HasData(
                  new Advertisement { 
                      Id = 1,
-                     Title = "Conoce todos los detalles acerca de este proyecto de ley y cómo podría afectar al mercado de apuestas online en el país.",
+                     Title = "Conoce todos los detalles acerca de",
                      Description = "Impuesto a los juegos y apuestas online: todo lo que debes saber sobre esta iniciativa",
                      ImageAdvertisement = "https://picsum.photos/200/300",
                      UrlPublication = "https://gestion.pe/economia/juegos-y-apuestas-online-proyecto-impuestos-pagos-y-todo-lo-que-debes-saber-sobre-la-iniciativa-apuestas-deportivas-casino-online-rmmn-emcc-noticia/"

@@ -1,15 +1,15 @@
-﻿using GettingBetter.API.Advisory_System.Domain.Models;
+﻿// using GettingBetter.API.Advisory_System.Domain.Models;
 
 namespace GettingBetter.API.Advisory_System.Domain.Repositories;
 
 public interface IAdvisoryRepository
 {
-    Task<IEnumerable<Advisory>> ListAsync();
-    Task AddAsync(Advisory advisory);
-    Task<Advisory> FindByIdAsync(int advisoryId);
+    Task<IEnumerable<Domain.Models.Advisory>> ListAsync();
+    Task AddAsync(Domain.Models.Advisory advisory);
+    Task<Domain.Models.Advisory> FindByIdAsync(int advisoryId);
  
-    Task<IEnumerable<Advisory>> FindByStudentIdAsync(int studentId);
-    Task<IEnumerable<Advisory>> FindByCoachIdAsync(int coachId);
-    void Update(Advisory advisory);
-    void Remove(Advisory advisory); 
+    Task<IEnumerable<Domain.Models.Advisory>> FindByStudentIdAsync(int studentId);
+    Task<IEnumerable<Domain.Models.Advisory>> FindByCoachIdAsync(int coachId);
+    void Update(Domain.Models.Advisory advisory);
+    void Remove(Domain.Models.Advisory advisory); 
 }
