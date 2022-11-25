@@ -88,6 +88,7 @@ namespace GettingBetter.API.Tournament_System.Services
             existingTournament.Addres = tournament.Addres;
             existingTournament.Date = tournament.Date;
             existingTournament.Description = tournament.Description;
+            existingTournament.Capacity = tournament.Capacity;
 
             try
             {

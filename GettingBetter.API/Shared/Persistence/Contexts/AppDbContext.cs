@@ -40,6 +40,7 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
             builder.Entity<Tournament>().Property(p => p.CyberId).IsRequired();
             builder.Entity<Tournament>().Property(p => p.Date).IsRequired().HasMaxLength(30); 
             builder.Entity<Tournament>().Property(p => p.Addres).IsRequired().HasMaxLength(120);  
+            builder.Entity<Tournament>().Property(p => p.Capacity).IsRequired();  
             
             builder.Entity<Tournament>().HasData(
                 new Tournament { 
@@ -49,7 +50,8 @@ namespace GettingBetter.API.Shared.Persistence.Contexts
                                   "deberan combatir 1 vs 1 en linea media sin la posibilidad de hacer jungla ",
                     CyberId = 1,
                     Date = "30062022",
-                    Addres = "AV. Javier Prado Lt2 Manzada D4"
+                    Addres = "AV. Javier Prado Lt2 Manzada D4",
+                    Capacity = 6
                 } 
             );
 

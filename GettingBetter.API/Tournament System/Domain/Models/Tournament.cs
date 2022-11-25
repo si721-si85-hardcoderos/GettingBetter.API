@@ -11,6 +11,7 @@ namespace GettingBetter.API.Tournament_System.Domain.Models
         public string Date { get; set; }
 
         public string Addres { get; set; }
+        public int Capacity { get; set; }
         // Relationships
 
         public int CyberId { get; set; }
